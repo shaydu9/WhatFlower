@@ -14,6 +14,7 @@
 		4E80CD652B0D040D00714A5E /* WhatFlower.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4E80CD632B0D040D00714A5E /* WhatFlower.xcdatamodeld */; };
 		4E80CD672B0D041100714A5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E80CD662B0D041100714A5E /* Assets.xcassets */; };
 		4E80CD6A2B0D041100714A5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E80CD682B0D041100714A5E /* LaunchScreen.storyboard */; };
+		4E80CD732B0D043800714A5E /* Flowers.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4E80CD722B0D043700714A5E /* Flowers.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		4E80CD662B0D041100714A5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E80CD692B0D041100714A5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E80CD6B2B0D041100714A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E80CD722B0D043700714A5E /* Flowers.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Flowers.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				4E80CD682B0D041100714A5E /* LaunchScreen.storyboard */,
 				4E80CD6B2B0D041100714A5E /* Info.plist */,
 				4E80CD632B0D040D00714A5E /* WhatFlower.xcdatamodeld */,
+				4E80CD722B0D043700714A5E /* Flowers.mlmodel */,
 			);
 			path = WhatFlower;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				4E80CD5B2B0D040D00714A5E /* AppDelegate.swift in Sources */,
 				4E80CD652B0D040D00714A5E /* WhatFlower.xcdatamodeld in Sources */,
 				4E80CD5D2B0D040D00714A5E /* SceneDelegate.swift in Sources */,
+				4E80CD732B0D043800714A5E /* Flowers.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
