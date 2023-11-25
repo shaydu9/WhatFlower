@@ -17,20 +17,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HUY-lM-usR">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="375" id="yWG-yz-1Sn"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3GA-Vb-RWk">
+                                <rect key="frame" x="20" y="498" width="353" height="320"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HUY-lM-usR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3gJ-sI-UkE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HUY-lM-usR" secondAttribute="bottom" id="PaD-AC-Wyb"/>
-                            <constraint firstItem="HUY-lM-usR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QV0-Wq-ITY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HUY-lM-usR" secondAttribute="trailing" id="pLp-Tf-MOX"/>
+                            <constraint firstItem="HUY-lM-usR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8YD-7B-rON"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3GA-Vb-RWk" secondAttribute="bottom" id="Ad1-gx-zp4"/>
+                            <constraint firstItem="3GA-Vb-RWk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Lmb-YQ-qjT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3GA-Vb-RWk" secondAttribute="trailing" constant="20" id="Ulm-MK-2WQ"/>
+                            <constraint firstItem="3GA-Vb-RWk" firstAttribute="top" secondItem="HUY-lM-usR" secondAttribute="bottom" constant="20" id="ZNd-23-uaw"/>
+                            <constraint firstItem="HUY-lM-usR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lUQ-WB-jPK"/>
+                            <constraint firstItem="HUY-lM-usR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tWo-wS-ycM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bmF-gy-689">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="hPe-aC-GIf">
+                        <barButtonItem key="leftBarButtonItem" title="Gallery" id="hPe-aC-GIf">
                             <connections>
                                 <action selector="galleryTapped:" destination="BYZ-38-t0r" id="uvG-jA-DPO"/>
                             </connections>
@@ -42,6 +54,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionLabel" destination="3GA-Vb-RWk" id="iPc-kc-6Wk"/>
                         <outlet property="imageView" destination="HUY-lM-usR" id="37V-sC-B7k"/>
                     </connections>
                 </viewController>

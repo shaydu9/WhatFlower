@@ -9,6 +9,8 @@ import UIKit
 import Vision
 import PhotosUI
 import CoreML
+import Alamofire
+import SDWebImage
 
 class ViewController: UIViewController {
     
@@ -30,7 +32,11 @@ class ViewController: UIViewController {
         return cameraPicker
     }
     
+    let wikiUrl = "https://en.wikipedia.org/w/api.php"
+    
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +44,7 @@ class ViewController: UIViewController {
     }
     
     func userSelectedPhoto(_ photo: UIImage) {
-        updateImage(photo)
+//        updateImage(photo)
         
         // classify
         detect(photo)
@@ -52,14 +58,40 @@ class ViewController: UIViewController {
     
     func updateNavigationTitle(_ title: String) {
         DispatchQueue.main.async {
-            self.navigationItem.title = title
+            self.navigationItem.title = title.capitalized
+        }
+    }
+    
+    func requestInfo(flowerName: String) {
+        let parameters : [String:String] = [
+            "format": "json",
+            "action": "query",
+            "prop": "extracts|pageimages",
+            "exintro": "",
+            "explaintext": "",
+            "titles": flowerName,
+            "indexpageids": "",
+            "redirects": "1",
+            "pithumbsize": "500"
+        ]
+        AF.request(wikiUrl, method: .get, parameters: parameters).responseDecodable(of: FlowerDetails.self) { response in
+            switch response.result {
+            case .success:
+                guard let flower: FlowerDetails = response.value else { return }
+                self.descriptionLabel.text = flower.query.pages.first?.value.extract
+                if let source = flower.query.pages.first?.value.thumbnail.source {
+                    self.imageView.sd_setImage(with: URL(string: source))
+                }
+            case .failure(let error):
+                print("Error: \(error)")
+            }
         }
     }
     
     func detect(_ image: UIImage) {
         guard let ciImage = CIImage(image: image) else { fatalError("Could not convert to CIIamge") }
         
-        guard let model = try? VNCoreMLModel(for: Flowers().model) else {
+        guard let model = try? VNCoreMLModel(for: Flowers(configuration: MLModelConfiguration()).model) else {
             fatalError("Loading CoreML Model Failed.")
         }
         
@@ -68,6 +100,7 @@ class ViewController: UIViewController {
             
             if let flower = classification?.identifier {
                 self.updateNavigationTitle(flower)
+                self.requestInfo(flowerName: flower)
             }
         }
         
