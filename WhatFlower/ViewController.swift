@@ -50,33 +50,32 @@ class ViewController: UIViewController {
         }
     }
     
+    func updateNavigationTitle(_ title: String) {
+        DispatchQueue.main.async {
+            self.navigationItem.title = title
+        }
+    }
+    
     func detect(_ image: UIImage) {
         guard let ciImage = CIImage(image: image) else { fatalError("Could not convert to CIIamge") }
         
         guard let model = try? VNCoreMLModel(for: Flowers().model) else {
             fatalError("Loading CoreML Model Failed.")
         }
+        
         let request = VNCoreMLRequest(model: model) { request, error in
-            if let error = error {
-                print("Error loading core model: \(error)")
-                return
-            }
+            let classification = request.results?.first as? VNClassificationObservation
             
-            guard let results = request.results as? [VNClassificationObservation] else {
-                fatalError("Model failed to process image.")
+            if let flower = classification?.identifier {
+                self.updateNavigationTitle(flower)
             }
-            
-            if let firstResult = results.first {
-                self.navigationItem.title = firstResult.identifier.description
-            }
-            
-            let handler = VNImageRequestHandler(ciImage: ciImage)
-            do {
-                try handler.perform([request])
-            } catch {
-                print(error)
-            }
-            
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: ciImage)
+        do {
+            try handler.perform([request])
+        } catch {
+            print(error)
         }
     }
 
